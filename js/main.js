@@ -5,7 +5,7 @@ DomReady.ready(function()
       var context = canvas.getContext('2d');
 
       // begin custom shape
-      context.beginPath();
+/*      context.beginPath();
       context.moveTo(170, 80);
       context.bezierCurveTo(130, 100, 130, 150, 230, 150);
       context.bezierCurveTo(250, 180, 320, 180, 340, 150);
@@ -20,5 +20,5 @@ DomReady.ready(function()
       context.fillStyle = '#8ED6FF';
       context.fill();
       context.strokeStyle = 'blue';
-      context.stroke();
+      context.stroke(); */
 });
