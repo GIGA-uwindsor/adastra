@@ -26,3 +26,15 @@ GUIButton.prototype = {
   }
 
 }
+
+GUIButton.fish = function () {
+  return GUIButton.__pool.fish();
+}
+
+GUIButton.release = function (f) {
+  GUIButton.__pool.release(f);
+}
+
+Runtime.Init(function () {
+  GUIButton.__pool = new NodePool(GUIButton, OfficialNodePool);
+});

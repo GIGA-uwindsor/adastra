@@ -29,4 +29,17 @@ FleetMovement.prototype = {
 
 }
 
-GFW_Entity(FleetMovement, Order);
+GFW_Mixin(FleetMovement, Order);
+
+FleetMovement.fish = function () {
+  return FleetMovement.__pool.fish();
+}
+
+FleetMovement.release = function (f) {
+  FleetMovement.__pool.release(f);
+}
+
+Runtime.Init(function () {
+  FleetMovement.__pool
+    = new NodePool(FleetMovement, OfficialNodePool);
+});

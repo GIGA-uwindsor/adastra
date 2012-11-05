@@ -23,3 +23,15 @@ Player.prototype = {
   }
   
 }
+
+Player.fish = function () {
+  return Player.__pool.fish();
+}
+
+Player.release = function (f) {
+  Player.__pool.release(f);
+}
+
+Runtime.Init(function () {
+  Player.__pool = new NodePool(Player, OfficialNodePool);
+});

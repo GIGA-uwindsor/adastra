@@ -64,3 +64,15 @@ Planet.prototype = {
   },
   
 }
+
+Planet.fish = function () {
+  return Planet.__pool.fish();
+}
+
+Planet.release = function (f) {
+  Planet.__pool.release(f);
+}
+
+Runtime.Init(function () {
+  Planet.__pool = new NodePool(Planet, OfficialNodePool);
+});

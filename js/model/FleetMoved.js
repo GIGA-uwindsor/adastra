@@ -40,3 +40,15 @@ FleetMoved.prototype = {
   },
 
 }
+
+FleetMoved.fish = function () {
+  return FleetMoved.__pool.fish();
+}
+
+FleetMoved.release = function (f) {
+  FleetMoved.__pool.release(f);
+}
+
+Runtime.Init(function () {
+  FleetMoved.__pool = new NodePool(FleetMoved, OfficialNodePool);
+});
