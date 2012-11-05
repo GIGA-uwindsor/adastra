@@ -17,6 +17,19 @@ PositionDestination.prototype = {
   
 }
 
+PositionDestination.fish = function () {
+  return PositionDestination.__pool.fish();
+}
+
+PositionDestination.release = function (pd) {
+  PositionDestination.__pool.release(pd);
+}
+
+Runtime.Init(function () {
+  PositionDestination.__pool
+    = new NodePool(PositionDestination, OfficialNodePool);
+});
+
 /*
  * Planet destination
  */
@@ -42,6 +55,20 @@ PlanetDestination.prototype = {
 
 }
 
+PlanetDestination.fish = function () {
+  return PlanetDestination.__pool.fish();
+}
+
+PlanetDestination.release = function (pd) {
+  pd.set(null);
+  PlanetDestination.__pool.release(pd);
+}
+
+Runtime.Init(function () {
+  PlanetDestination.__pool
+    = new NodePool(PlanetDestination, OfficialNodePool);
+});
+
 /*
  * Fleet destination
  */
@@ -65,6 +92,20 @@ FleetDestination.prototype = {
     this.__fleet = fleet;
   }
 }
+
+FleetDestination.fish = function () {
+  return FleetDestination.__pool.fish();
+}
+
+FleetDestination.release = function (pd) {
+  pd.set(null);
+  FleetDestination.__pool.release(pd);
+}
+
+Runtime.Init(function () {
+  FleetDestination.__pool
+    = new NodePool(FleetDestination, OfficialNodePool);
+});
 
 /*
  * Given a point, calculates the nearest point on the perimeter

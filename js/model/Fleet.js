@@ -45,3 +45,15 @@ Fleet.prototype = {
   }
 
 }
+
+Fleet.fish = function () {
+  return Fleet.__pool.fish();
+}
+
+Fleet.release = function (f) {
+  Fleet.__pool.release(f);
+}
+
+Runtime.Init(function () {
+  Fleet.__pool = new NodePool(Fleet, OfficialNodePool);
+});
