@@ -1,0 +1,3 @@
+[submodule "GFW"]
+	path = js/GFW
+	url = https://github.com/erisco/GFW.git
