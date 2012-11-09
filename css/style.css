@@ -2,6 +2,14 @@
 
 body, html { height:100%; }
 
+/*
+font-family: 'Crushed', cursive;
+font-family: 'Passero One', cursive;
+font-family: 'Racing Sans One', cursive;
+font-family: 'Audiowide', cursive;
+font-family: 'Nova Cut', cursive;
+font-family: 'Germania One', cursive;	 */
+
 #mapcanvas {
     position:absolute;
     width:99%;
