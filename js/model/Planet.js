@@ -41,7 +41,7 @@ Planet.prototype = {
   },
   setPosition: function (pos) {
     XYPair.copyTo(pos, this.__pos);
-  }
+  },
   
   /*
    * Production

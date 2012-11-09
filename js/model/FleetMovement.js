@@ -29,7 +29,8 @@ FleetMovement.prototype = {
 
 }
 
-GFW_Mixin(FleetMovement, Order);
+// TODO: waiting for GFW submodule
+// Runtime.Init(function () { GFW_Mixin(FleetMovement, Order); });
 
 FleetMovement.fish = function () {
   return FleetMovement.__pool.fish();
