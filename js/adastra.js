@@ -14,7 +14,7 @@ var AdAstra = {
 		AdAstra.timeout = setInterval(this.draw, 1000.0/30.0);
 		AdAstra.frame = 0;
 		
-		setTimeout(this.background, 1000.0);
+		setTimeout(this.background, 250.0);
 		
 		window.onresize = this.background;
 	},
