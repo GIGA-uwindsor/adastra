@@ -53,71 +53,185 @@ var AdAstra = {
 		AdAstra.stage.update(); 
 		
 		Ticker.addListener(AdAstra.draw);
-		Ticker.setInterval(1000.0/40.0);
+		Ticker.setInterval(1000.0/60.0);
 		
-		AdAstra.background();
+		AdAstra.background1();
+		AdAstra.background2();
+		AdAstra.background3();
 
        
 	},
 	
-	background: function()
+	background1: function()
 	{
 		AdAstra.stars = new Stage(document.getElementById("canvas"));
 		AdAstra.stars.autoClear = false;
-//		AdAstra.listStars = new Array();
 		
 		var g = new Graphics();
 		var x = 0, y = 0;
 
-		g.beginFill(Graphics.getRGB(255, 255, 255));
-		g.drawCircle(0, 0, 1.5);
-		g.endFill();
-		
-		var tweens = [];
-				
-		var shape = new Shape(g);	
-		
-		var func = function(e)
-		{
-			var s = e.target;
-			
-			s.x = AdAstra.width;	
-			var t = Tween.get(s, {override: true, useTicks: false}).to({x:-10, y:s.y}, 15000.0)
-				.call(func);
-				
-//			tweens.push(t);
-			
-
-		};		
-
-		for (var a = 0; a < 100; a++)
+		for (var a = 0; a < 75; a++)
 		{
 			x = Math.floor(Math.random() * AdAstra.width / 2) * 2;
 			y = Math.floor(Math.random() * AdAstra.height / 2) * 2;
 
-			var shape1 = shape.clone(false);
-			shape1.x = x;
-			shape1.y = y;
-			
-			var tween = Tween.get(shape1, {override: true, useTicks: false}).to({x:-10, y:y}, 15000.0 * (x / AdAstra.width))
-				.call(func);
-				
-//			tweens.push(tween);
-		
-			AdAstra.stars.addChild(shape1);
-			
+			g.beginFill(Graphics.getRGB(255, 255, 255));
+			g.drawCircle(x, y, 1.5);
+			g.endFill();
 			
 		}
 
-		AdAstra.stars.update();
+		var shape1 = new Shape(g);
+		shape1.x = 0;
+		shape1.y = 0;
 		
+		AdAstra.stars.addChild(shape1);
+		
+		AdAstra.stars.cache(0, 0, AdAstra.width, AdAstra.height, 1.0);
+	
+	},
+
+	background2: function()
+	{
+		AdAstra.stars2 = new Stage(document.getElementById("canvas"));
+		AdAstra.stars2.autoClear = false;
+		
+		var g = new Graphics();
+		var x = 0, y = 0;
+
+		for (var a = 0; a < 30; a++)
+		{
+			x = Math.floor(Math.random() * AdAstra.width / 2) * 2;
+			y = Math.floor(Math.random() * AdAstra.height / 2) * 2;
+
+			g.beginFill(Graphics.getRGB(255, 255, 255));
+			g.drawCircle(x, y, 1.5);
+			g.endFill();
+			
+		}
+
+		var shape1 = new Shape(g);
+		shape1.x = 0;
+		shape1.y = 0;
+		
+		AdAstra.stars2.addChild(shape1);
+		
+		AdAstra.stars2.cache(0, 0, AdAstra.width, AdAstra.height, 1.0);
 	
 	},
 	
-	draw: function()
+		background3: function()
+		{
+			AdAstra.stars3 = new Stage(document.getElementById("canvas"));
+			AdAstra.stars3.autoClear = false;
+			
+			var g = new Graphics();
+			var x = 0, y = 0;
+	
+			for (var a = 0; a < 30; a++)
+			{
+				x = Math.floor(Math.random() * AdAstra.width / 2) * 2;
+				y = Math.floor(Math.random() * AdAstra.height / 2) * 2;
+	
+				g.beginFill(Graphics.getRGB(255, 255, 255));
+				g.drawCircle(x, y, 1.5);
+				g.endFill();
+				
+			}
+	
+			var shape1 = new Shape(g);
+			shape1.x = 0;
+			shape1.y = 0;
+			
+			AdAstra.stars3.addChild(shape1);
+			
+			AdAstra.stars3.cache(0, 0, AdAstra.width, AdAstra.height, 1.0);
+		
+		},
+	
+	
+	draw: function(dt)
 	{
 		AdAstra.stars.clear();
-		AdAstra.stars.update();
+//		Console.log(dt);
+		if (AdAstra.offset === undefined)
+		{
+			AdAstra.offset = 0;
+		}
+		
+		if (AdAstra.offset2 === undefined)
+		{
+			AdAstra.offset2 = 0;
+		}
+		
+		if (AdAstra.offset3 === undefined)
+		{
+			AdAstra.offset3 = 0;
+		}
+		
+		var n = 60.0;
+		AdAstra.offset += (AdAstra.width) * ((dt / 1000.0)/ n)
+		if (AdAstra.offset > AdAstra.width)
+			AdAstra.offset = 0;
+		
+		var os = AdAstra.offset;
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		var w = AdAstra.width;
+		var h = AdAstra.height;
+		
+		context.drawImage(AdAstra.stars.cacheCanvas, os, 0, w - os, h,
+										 0, 0, w - os, h);
+				
+		if (os != 0)
+			context.drawImage(AdAstra.stars.cacheCanvas, 0, 0, os, h,
+			 								 w - os, 0, os, h);
+
+// ========
+
+		var n = 30.0;
+		AdAstra.offset2 += (AdAstra.width) * ((dt / 1000.0)/ n)
+		if (AdAstra.offset2 > AdAstra.width)
+			AdAstra.offset2 = 0;
+		
+		var os = AdAstra.offset2;
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		var w = AdAstra.width;
+		var h = AdAstra.height;
+		
+		context.drawImage(AdAstra.stars2.cacheCanvas, os, 0, w - os, h,
+										 0, 0, w - os, h);
+				
+		if (os != 0)
+			context.drawImage(AdAstra.stars2.cacheCanvas, 0, 0, os, h,
+			 								 w - os, 0, os, h);
+
+// ======
+
+
+		var n = 10.0;
+		AdAstra.offset3 += (AdAstra.width) * ((dt / 1000.0)/ n)
+		if (AdAstra.offset3 > AdAstra.width)
+			AdAstra.offset3 = 0;
+		
+		var os = AdAstra.offset3;
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		var w = AdAstra.width;
+		var h = AdAstra.height;
+		
+		context.drawImage(AdAstra.stars3.cacheCanvas, os, 0, w - os, h,
+										 0, 0, w - os, h);
+				
+		if (os != 0)
+			context.drawImage(AdAstra.stars3.cacheCanvas, 0, 0, os, h,
+			 								 w - os, 0, os, h);
+		
+		
+		
+//		AdAstra.stars.update();
+		
 		AdAstra.stage.update();
 		
 /*		var canvas = document.getElementById('mapcanvas');
