@@ -25,12 +25,13 @@ var AdAstra = {
 		AdAstra.width =  canvas.width;
 		AdAstra.height = canvas.height;
 		
-		var title = new Text("Ad Astra:", "40px 'Germania One'", "#FFFFFF");
+		var title = new Text("Ad Astra:", "40px 'Droid Sans'", "#FFFFFF");
 		title.x = AdAstra.width / 2 - title.getMeasuredWidth()/2 - 60;
-		title.y = AdAstra.height / 2 - title.getMeasuredHeight()/2 - 60;
+//		title.y = AdAstra.height / 2 - title.getMeasuredHeight()/2 - 60;
+		title.y = 40;
 		AdAstra.stage.addChild(title);
 		
-		var subtitle = new Text("Primitus", "40px 'Germania One'", "#FFFFFF");
+		var subtitle = new Text("Primitus", "40px 'Droid Sans'", "#FFFFFF");
 		subtitle.x = AdAstra.width/2 - subtitle.getMeasuredWidth()/2 - 30;
 		subtitle.y = title.y + subtitle.getMeasuredHeight() * 1.1;
 		AdAstra.stage.addChild(subtitle);
@@ -54,13 +55,28 @@ var AdAstra = {
 		}
 	
 		var g = new Graphics();
-		g.beginFill(Graphics.getRGB(0, 0, 255));
+		g.beginStroke(Graphics.getRGB(0, 120, 152));
+		g.beginFill(Graphics.getRGB(0, 154, 196));
 		g.rect(0, 0, AdAstra.width / 8, AdAstra.width / 8);
+		g.endFill();
+		g.endStroke();
 		var s = new Shape(g);
-		s.x = AdAstra.width/4;
-		s.y = AdAstra.height / 4 * 3;
+		s.x = AdAstra.width/6;
+		s.y = subtitle.y + subtitle.getMeasuredHeight() * 2.0;
 		
 		AdAstra.stage.addChild(s);	
+		
+		var b = new Bitmap(AdAstra.images['plus']);
+		b.x = s.x + 10;
+		b.y = AdAstra.width / 8 + s.y - 10 - b.image.height;
+//		console.log(b.image.height);
+		AdAstra.stage.addChild(b);
+		
+		var text = new Text("New Game", "20px 'Droid Sans'", "#FFFFFF");
+		text.x = s.x + AdAstra.width / 8 - text.getMeasuredWidth() - 5;
+		text.y = s.y + 5;
+		
+		AdAstra.stage.addChild(text);
 		
 	},
 	
