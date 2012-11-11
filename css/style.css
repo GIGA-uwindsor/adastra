@@ -1,9 +1,34 @@
 * { margin: 0; padding: 0;}
 
-body, html { height:100%; }
+/*body, html { height:100%; }*/
 
-#mapcanvas {
+/*
+font-family: 'Crushed', cursive;
+font-family: 'Passero One', cursive;
+font-family: 'Racing Sans One', cursive;
+font-family: 'Audiowide', cursive;
+font-family: 'Nova Cut', cursive;
+font-family: 'Germania One', cursive;	 */
+
+/*#mapcanvas {
     position:absolute;
-    width:100%;
-    height:100%;
+    width:99%;
+    height:95%;
+    border: 1px solid black;
+    background: black;
+    
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+}*/
+
+#canvas
+{
+	background-color: #000000;
+	position:  absolute;
+	width: 100%;
+	height:  100%;
+	left: 0;
+	top: 0;
 }
