@@ -188,9 +188,9 @@ var AdAstra = {
 		for (var i = 0; i < 20; ++i)
 		 for (var j = 0; j < 7; ++j)
 		 {
-		 	var t = AdAstra.createTile(64, 64, ""+i+j);
-			t.x = 30 + i * 70;
-			t.y = 30 + j * 70;
+		 	var t = AdAstra.createTile(128, 128, ""+i+j);
+			t.x = 30 + i * 132;
+			t.y = 100 + j * 132;
 			AdAstra.stage2.addChild(t);
 		 }
 		
