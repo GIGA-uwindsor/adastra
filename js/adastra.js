@@ -149,6 +149,11 @@ var AdAstra = {
 	
 	draw: function(dt)
 	{
+
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		var w = AdAstra.width;
+		var h = AdAstra.height;
 	
 		AdAstra.stage.clear();
 		
@@ -163,7 +168,12 @@ var AdAstra = {
 				AdAstra.stage.update();
 				break;
 			case 2:
+				// here we should do a draw image thing to prevent 100% cpu
 				AdAstra.stage2.update();
+
+//				context.drawImage(AdAstra.stage2.cacheCanvas, o, 0, w, h,
+//								 0, 0, w, h);
+
 		}
 		
 	},
@@ -193,6 +203,9 @@ var AdAstra = {
 			t.y = 100 + j * 132;
 			AdAstra.stage2.addChild(t);
 		 }
+		
+		AdAstra.stage2.cache(0, 0, AdAstra.width, AdAstra.height);
+		AdAstra.stage2.update();
 		
 		
 	},
