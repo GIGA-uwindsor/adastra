@@ -55,33 +55,42 @@ var AdAstra = {
 			AdAstra.stars.push(stage);
 		}
 	
-		var g = new Graphics();
-		g.beginStroke(Graphics.getRGB(0, 120, 152));
-		g.beginFill(Graphics.getRGB(0, 154, 196));
-		g.rect(0, 0, AdAstra.width / 8, AdAstra.width / 8);
-		g.endFill();
-		g.endStroke();
-		var s = new Shape(g);
-		s.x = AdAstra.width/6;
-		s.y = subtitle.y + subtitle.getMeasuredHeight() * 2.0;
+		var ng = AdAstra.createTile(AdAstra.width / 8,  AdAstra.width / 8, "New Game", AdAstra.images['plus']);
+		ng.x = AdAstra.width / 6;
+		ng.y = subtitle.y + subtitle.getMeasuredHeight() * 2.0;
+		AdAstra.stage.addChild(ng);
 		
-		AdAstra.stage.addChild(s);	
-		
-		var b = new Bitmap(AdAstra.images['plus']);
-		b.x = s.x + 10;
-		b.y = AdAstra.width / 8 + s.y - 10 - b.image.height;
+//		var g = new Graphics();
+//		g.beginStroke(Graphics.getRGB(0, 120, 152));
+//		g.beginFill(Graphics.getRGB(0, 154, 196));
+//		g.rect(0, 0, AdAstra.width / 8, AdAstra.width / 8);
+//		g.endFill();
+//		g.endStroke();
+//		var s = new Shape(g);
+//		s.x = AdAstra.width/6;
+//		s.y = subtitle.y + subtitle.getMeasuredHeight() * 2.0;
+//		
+//		AdAstra.stage.addChild(s);	
+//		
+//		var b = new Bitmap(AdAstra.images['plus']);
+//		b.x = s.x + 10;
+//		b.y = AdAstra.width / 8 + s.y - 10 - b.image.height;
 //		console.log(b.image.height);
-		AdAstra.stage.addChild(b);
+//		AdAstra.stage.addChild(b);
+//		
+//		var text = new Text("New Game", "20px 'Droid Sans'", "#FFFFFF");
+//		text.x = s.x + AdAstra.width / 8 - text.getMeasuredWidth() - 5;
+//		text.y = s.y + 5;
+//		
+//		AdAstra.stage.addChild(text);
 		
-		var text = new Text("New Game", "20px 'Droid Sans'", "#FFFFFF");
-		text.x = s.x + AdAstra.width / 8 - text.getMeasuredWidth() - 5;
-		text.y = s.y + 5;
-		
-		AdAstra.stage.addChild(text);
-		
-		s.onClick = function(e) {
+		ng.onClick = function(e) {
 			AdAstra.newgame(e);
 		 };
+		
+		AdAstra.createGameBoard();
+		
+		AdAstra.gameState = 1;
 		
 	},
 	
@@ -140,19 +149,88 @@ var AdAstra = {
 	
 	draw: function(dt)
 	{
+	
 		AdAstra.stage.clear();
 		
-		for (var i = 0; i < AdAstra.stars.length; i++)
+		switch (AdAstra.gameState)
 		{
-			AdAstra.displayStar(i, dt);
+			case 1: 
+				for (var i = 0; i < AdAstra.stars.length; i++)
+				{
+					AdAstra.displayStar(i, dt);
+				}
+						
+				AdAstra.stage.update();
+				break;
+			case 2:
+				AdAstra.stage2.update();
 		}
-				
-		AdAstra.stage.update();
 		
 	},
 	
 	newgame: function(e)
 	{
 		console.log("create new game");
+		AdAstra.gameState = 2;
+	},
+	
+	createGameBoard: function()
+	{
+		var canvas = document.getElementById('canvas');
+		canvas.width = document.width;
+		canvas.height = document.height;
+		
+		
+		AdAstra.stage2 = new Stage(document.getElementById("canvas"));
+		AdAstra.stage2.enableMouseOver();
+		AdAstra.stage2.mouseEnabled = true;
+		
+		for (var i = 0; i < 20; ++i)
+		 for (var j = 0; j < 7; ++j)
+		 {
+		 	var t = AdAstra.createTile(64, 64, ""+i+j);
+			t.x = 30 + i * 70;
+			t.y = 30 + j * 70;
+			AdAstra.stage2.addChild(t);
+		 }
+		
+		
+	},
+	
+	createTile: function(w, h, text, bitmap)
+	{
+		var c = new Container();
+		
+		// create border
+		var g = new Graphics();
+		g.beginStroke(Graphics.getRGB(0, 120, 152));
+		g.beginFill(Graphics.getRGB(0, 154, 196));
+		g.rect(0, 0, w, h);
+		g.endFill();
+		g.endStroke();
+		var s = new Shape(g);
+		s.x = 0;
+		s.y = 0;
+		
+		c.addChild(s);
+		
+		if (text !== undefined)
+		{
+			var text = new Text(text, "20px 'Droid Sans'", "#FFFFFF");
+			text.x = w - text.getMeasuredWidth() - 5;
+			text.y = 5;
+			c.addChild(text);
+		}
+		
+		if (bitmap !== undefined)
+		{
+			var b = new Bitmap(AdAstra.images['plus']);
+			b.x = 10;
+			b.y = h - 10 - b.image.height;
+			
+			c.addChild(b);
+		}
+		
+		return c;
 	}
 }
