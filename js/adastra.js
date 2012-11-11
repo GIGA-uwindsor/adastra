@@ -19,19 +19,20 @@ var AdAstra = {
 		
 		AdAstra.stage = new Stage(document.getElementById("canvas"));
 		AdAstra.stage.enableMouseOver();
+		AdAstra.stage.mouseEnabled = true;
 		
 		AdAstra.stage.autoClear = false;
 		
 		AdAstra.width =  canvas.width;
 		AdAstra.height = canvas.height;
 		
-		var title = new Text("Ad Astra:", "40px 'Droid Sans'", "#FFFFFF");
+		var title = new Text("Ad Astra:", "700 40px 'Droid Sans'", "#FFFFFF");
 		title.x = AdAstra.width / 2 - title.getMeasuredWidth()/2 - 60;
 //		title.y = AdAstra.height / 2 - title.getMeasuredHeight()/2 - 60;
 		title.y = 40;
 		AdAstra.stage.addChild(title);
 		
-		var subtitle = new Text("Primitus", "40px 'Droid Sans'", "#FFFFFF");
+		var subtitle = new Text("Primitus", "700 40px 'Droid Sans'", "#FFFFFF");
 		subtitle.x = AdAstra.width/2 - subtitle.getMeasuredWidth()/2 - 30;
 		subtitle.y = title.y + subtitle.getMeasuredHeight() * 1.1;
 		AdAstra.stage.addChild(subtitle);
@@ -77,6 +78,10 @@ var AdAstra = {
 		text.y = s.y + 5;
 		
 		AdAstra.stage.addChild(text);
+		
+		s.onClick = function(e) {
+			AdAstra.newgame(e);
+		 };
 		
 	},
 	
@@ -144,5 +149,10 @@ var AdAstra = {
 				
 		AdAstra.stage.update();
 		
+	},
+	
+	newgame: function(e)
+	{
+		console.log("create new game");
 	}
 }

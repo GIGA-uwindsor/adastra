@@ -1,6 +1,6 @@
 WebFont.load({
     google: {
-      families: ['Germania One', 'Droid Sans']
+      families: ['Germania One', 'Droid Sans:400,700']
     },
 
     active: function() 
