@@ -5,10 +5,12 @@ window.onload = function () {
  
   var t = GFW.Trigger;
   var mainMenuLogic;
-  var preloadLogic = PreloadLogic(
-    assetLoader, function () { return mainMenuLogic; }
+  var preloadLogic = PreloadLogic(assetLoader,
+    function () { return mainMenuLogic; }
   );
-  var mainMenuLogic = MainMenuLogic(services, assetManager);
+  var mainMenuLogic = MainMenuLogic(services, assetManager,
+    function () { return GameLogic(services); }
+  );
   
   var start = t.Chain(preloadLogic);
   var interval = 1000/60;

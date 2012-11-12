@@ -1,3 +1,34 @@
+/*
+ * Trigger logic for initializing and updating the game.
+ */
+function GameLogic(services) {
+  var t = GFW.Trigger;
+  var s = GFW.Standard;
+  var game;
+  var scene;
+  var changeScene = [
+  t.Trigger(
+    t.Always(),
+    function () {
+      game = new Game();
+      return scene;
+    }
+  )
+  ];
+  var scene = [
+  t.Trigger(
+    s.LastSubStep(services),
+    function () {
+      game.draw();
+    }
+  )
+  ];
+  return changeScene;
+}
+
+/*
+ * State implementation of the game.
+ */
 function Game() {
   var canvas = document.getElementById('canvas');
   canvas.width = document.width;
@@ -6,6 +37,8 @@ function Game() {
   var stage = this.__stage = new Stage(document.getElementById("canvas"));
   stage.enableMouseOver();
   stage.mouseEnabled = true;
+  
+  this.__createGameBoard();
 }
 
 Game.prototype = {
