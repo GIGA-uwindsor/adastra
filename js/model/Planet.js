@@ -1,4 +1,5 @@
 function Planet() {
+  this.__pos = new GFW.Container.XYPair();
 }
 Planet.prototype = {
 
@@ -36,11 +37,11 @@ Planet.prototype = {
    * Position
    */
   getPosition: function (out) {
-    XYPair.copyTo(this.__pos, out);
+    GFW.Container.xycopyTo(this.__pos, out);
     return out;
   },
   setPosition: function (pos) {
-    XYPair.copyTo(pos, this.__pos);
+    GFW.Container.xycopyTo(pos, this.__pos);
   },
   
   /*
@@ -73,6 +74,4 @@ Planet.release = function (f) {
   Planet.__pool.release(f);
 }
 
-Runtime.Init(function () {
-  Planet.__pool = new NodePool(Planet, OfficialNodePool);
-});
+Planet.__pool = new GFW.Container.Pool(Planet, GFW.Container.OfficialNodePool);
