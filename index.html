@@ -7,14 +7,10 @@
 	<title>Ad Astra: Primitus</title>
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<link href='http://fonts.googleapis.com/css?family=Crushed|Passero+One|Racing+Sans+One|Audiowide|Nova+Cut|Germania+One&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
 	<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
 
 	<script type="text/javascript" src="js/crafty-min.js"></script>
-
-	<script src="js/adastra.js" type="application/javascript"></script>
-	<script src="js/main.js" type="application/javascript"></script>
-</head>
-<body>
 
 	<!--<header>
 		<a href="">Submit Turn</a>
@@ -23,11 +19,25 @@
 	<script>
 	window.onload = function()
 	{
-		Crafty.init(400, 336);
-		Crafty.scene("main");
+		Crafty.init(document.width, document.height);
+		Crafty.scene("preload");
 	}
 	</script>
 
+  <script>var createjs = window;
+  </script>
+	<script src="js/googleapis/webfont.js" type="application/javascript"></script>
+  <script src="js/createjs/easeljs-0.5.0.min.js" type="application/javascript"></script>
+  <script src="js/createjs/tweenjs-0.3.0.min.js" type="application/javascript"></script>
+  <script src="js/createjs/preloadjs-0.2.0.min.js" type="application/javascript"></script>
 
+  <script src="js/AssetLoader.js" type="application/javascript"></script>
+  <script src="js/preload.js" type="application/javascript"></script>
+  <script src="js/StarryBackground.js" type="application/javascript"></script>
+  <script src="js/Game.js" type="application/javascript"></script>
+  <script src="js/main.js" type="application/javascript"></script>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
 </body>
 </html>

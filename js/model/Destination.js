@@ -33,7 +33,7 @@ Runtime.Init(function () {
 /*
  * Planet destination
  */
-function PlanetDesination() {
+function PlanetDestination() {
 }
 PlanetDestination.prototype = {
 
