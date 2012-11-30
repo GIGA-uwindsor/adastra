@@ -50,5 +50,7 @@ Crafty.c("Tile",
 
 			this.attach(i);
 		}
+
+		return this;
 	}
 });
