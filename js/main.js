@@ -1,40 +1,23 @@
-WebFont.load({
-    google: {
-      families: ['Germania One', 'Droid Sans:400,700']
-    },
+Crafty.scene("main", function ()
+{
+	// Load the initial images
+	Crafty.load(["img/plus.png"], function ()
+	{
+		Crafty.e("2D, DOM, Image").attr({ w: 100, h: 100, x: 50, y: 50 })
+			.image("img/plus.png");
+	});
 
-    active: function() 
-    {
-    	var images = ['img/plus.png'];
-    	
-		AdAstra.images = {};
-		
-    	preload = new PreloadJS();
-    	preload.loadManifest(images, true);
-    	preload.onFileLoad = function(event)
-    	{
-    		var img = event.result;
-    		
-    		var name = String(String(event.src).toLowerCase()).replace('img/', '').replace('.jpg','').replace('.png','');
-    		
-    		AdAstra.images[name] = img;
-    		
-    		console.log('Loaded ' + name);
-    	};
-    	preload.onError = function(event)
-    	{
+	Crafty.background("#000");
 
-	    	console.log('File Error loading ' + event.src);
-    	};
-    	preload.onComplete = function(event)
-    	{
-	    	AdAstra.main();    	
-    	};
-    	
-    	preload.load();
-		
-    },
-    
-  });
+	// Title
+    Crafty.e("2D, DOM, Text").attr({ w: 100, h: 40, x: 150, y: 120 })
+            .text("Ad Astra:")
+			.textFont({ weight: "700", size: "40px", family: "Droid Sans"})
+            .css({ "text-align": "center", "color": "white" });
 
-
+	// Subtitle
+    Crafty.e("2D, DOM, Text").attr({ w: 100, h: 40, x: 150, y: 120 })
+            .text("Primitus")
+			.textFont({ weight: "700", size: "40px", family: "Droid Sans"})
+            .css({ "text-align": "center", "color": "white" });
+});
