@@ -7,7 +7,7 @@ Crafty.scene("preload", function () {
   var assetDict = {};
   var loader = new AssetLoader(assetDict);
 
-  var images = ['img/plus.png'];
+  var images = ['img/plus.png', 'img/planet.png'];
   loader.loadManifest(images);
   loader.loadFonts({
     google: {
