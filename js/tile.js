@@ -9,7 +9,7 @@ Crafty.c("Tile",
 	{
 		this.attr({ w: w, h: h });
 
-		var bb = Crafty.e("2D, DOM, Color")
+		var bb = Crafty.e("2D, Canvas, Color")
 			.color("#007898");
 		bb.w = w;
 		bb.h = h;
@@ -42,12 +42,11 @@ Crafty.c("Tile",
 
 		if (imagePath !== undefined)
 		{
-			var i = Crafty.e("2D, DOM, Image")
-				.image(imagePath);
-			i.x = 10; 	
-			i.y = h - 10 - i.h;
-			i.z = 1;
-
+      var i = Crafty.e("2D, DOM, Image")
+        .image(imagePath);
+      i.x = 10; 	
+      i.y = h - 10 - i.h;
+      i.z = 1;
 			this.attach(i);
 		}
 
