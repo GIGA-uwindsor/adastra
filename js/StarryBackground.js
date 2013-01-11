@@ -6,14 +6,14 @@ function StarryBackground(canvas) {
   stage.enableMouseOver();
 	stage.autoClear = false;
   var stars = this.__stars = [];
-  this.__rates = [60, 45, 20];
-  this.__offsets = [0, 0, 0];
+  this.__rates = [90, 60, 30, 10];
+  this.__offsets = [0, 0, 0, 0];
   
-  var starcounts = [75, 40, 30];
+  var starcounts = [120, 60, 30, 15];
   for (var i in starcounts)
   {
     var stage2 = new Stage(canvas);
-    this.__createStars(stage2, starcounts[i]);
+    this.__createStars(stage2, starcounts[i], i);
     stars.push(stage2);
   }
   
@@ -21,7 +21,12 @@ function StarryBackground(canvas) {
 
 StarryBackground.prototype = {
 
-  __createStars: function(stage, n)
+  /** 
+    *
+    *
+    * level: The level the star is drawn at. A higher level means it is intended to be closer to the screen.
+    */
+  __createStars: function(stage, n, level)
 	{
 		stage.autoClear = false;
 		
@@ -35,8 +40,20 @@ StarryBackground.prototype = {
 			x = Math.floor(Math.random() * w / 2) * 2;
 			y = Math.floor(Math.random() * h / 2) * 2;
 
-			g.beginFill(Graphics.getRGB(255, 255, 255));
-			g.drawCircle(x, y, 1.5);
+      // luminosity
+      var lum = 255 - ( ((this.__rates.length-1) - level)*20) - Math.floor(Math.random()*30);;
+      var minLum = Math.max(lum-60, 60);
+      
+      if ( a % 17 == 0 )  // blue
+        g.beginFill(Graphics.getRGB( minLum, minLum, 255));
+      else if ( a % 19 == 0 ) // yellow
+        g.beginFill(Graphics.getRGB( 255, 255, minLum));
+      else if ( a % 23 == 0 ) // red
+        g.beginFill(Graphics.getRGB( 255, minLum, minLum));
+      else  // white
+        g.beginFill(Graphics.getRGB( lum, lum, lum));
+      
+			g.drawCircle(x, y, (level/3)+1);
 			g.endFill();
 			
 		}
