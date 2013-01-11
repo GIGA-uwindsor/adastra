@@ -3,6 +3,7 @@
  */
 function FleetMovement() {
   this.__dest = new XYPair();
+  setFleet(-1);
 }
 FleetMovement.prototype = {
   
@@ -28,9 +29,6 @@ FleetMovement.prototype = {
   },
 
 }
-
-// TODO: waiting for GFW submodule
-// Runtime.Init(function () { GFW_Mixin(FleetMovement, Order); });
 
 FleetMovement.fish = function () {
   return FleetMovement.__pool.fish();

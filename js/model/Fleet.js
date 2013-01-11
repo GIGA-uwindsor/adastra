@@ -1,5 +1,8 @@
 function Fleet() {
   this.__pos = new XYPair();
+  setOwner(-1);
+  setShipCount(0);
+  
 }
 Fleet.prototype = {
 

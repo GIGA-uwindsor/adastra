@@ -1,4 +1,5 @@
 function Order() {
+  setID(0);
 }
 Order.prototype = {
   

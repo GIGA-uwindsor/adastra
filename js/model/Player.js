@@ -1,4 +1,6 @@
-function Player() {
+function Player(id) {
+  this.setID(id);
+  this.setName("none");
 }
 Player.prototype = {
 

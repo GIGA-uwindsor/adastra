@@ -1,4 +1,9 @@
-function Planet() {
+function Planet(id) {
+  setID(id);
+  setOwner(-1);
+  setShipCount(0);
+  this.__pos = new XYPair();
+  setRadius(4);
 }
 Planet.prototype = {
 

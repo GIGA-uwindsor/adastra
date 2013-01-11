@@ -1,30 +1,3 @@
-/*
- * Trigger logic for initializing and updating the game.
- */
-function GameLogic(services) {
-  var t = GFW.Trigger;
-  var s = GFW.Standard;
-  var game;
-  var scene;
-  var changeScene = [
-  t.Trigger(
-    t.Always(),
-    function () {
-      game = new Game();
-      return scene;
-    }
-  )
-  ];
-  var scene = [
-  t.Trigger(
-    s.LastSubStep(services),
-    function () {
-      game.draw();
-    }
-  )
-  ];
-  return changeScene;
-}
 
 /*
  * State implementation of the game.
